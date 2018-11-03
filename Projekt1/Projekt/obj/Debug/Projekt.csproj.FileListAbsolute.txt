@@ -75,3 +75,13 @@ C:\Users\Patrik\Desktop\Projekt\Projekt\obj\Debug\Projekt.csproj.GenerateResourc
 C:\Users\Patrik\Desktop\Projekt\Projekt\obj\Debug\Projekt.csproj.CoreCompileInputs.cache
 C:\Users\Patrik\Desktop\Projekt\Projekt\obj\Debug\Projekt.exe
 C:\Users\Patrik\Desktop\Projekt\Projekt\obj\Debug\Projekt.pdb
+C:\Users\Patrik\Documents\GitHub\Projekt1\Projekt1\Projekt\bin\Debug\Projekt.exe.config
+C:\Users\Patrik\Documents\GitHub\Projekt1\Projekt1\Projekt\bin\Debug\Projekt.exe
+C:\Users\Patrik\Documents\GitHub\Projekt1\Projekt1\Projekt\bin\Debug\Projekt.pdb
+C:\Users\Patrik\Documents\GitHub\Projekt1\Projekt1\Projekt\obj\Debug\Projekt.csprojAssemblyReference.cache
+C:\Users\Patrik\Documents\GitHub\Projekt1\Projekt1\Projekt\obj\Debug\Projekt.PodcastPlayer.resources
+C:\Users\Patrik\Documents\GitHub\Projekt1\Projekt1\Projekt\obj\Debug\Projekt.Properties.Resources.resources
+C:\Users\Patrik\Documents\GitHub\Projekt1\Projekt1\Projekt\obj\Debug\Projekt.csproj.GenerateResource.cache
+C:\Users\Patrik\Documents\GitHub\Projekt1\Projekt1\Projekt\obj\Debug\Projekt.csproj.CoreCompileInputs.cache
+C:\Users\Patrik\Documents\GitHub\Projekt1\Projekt1\Projekt\obj\Debug\Projekt.exe
+C:\Users\Patrik\Documents\GitHub\Projekt1\Projekt1\Projekt\obj\Debug\Projekt.pdb
