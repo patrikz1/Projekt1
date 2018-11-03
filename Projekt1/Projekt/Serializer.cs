@@ -77,7 +77,7 @@ namespace Projekt
             }
             return ListLvItems;
         }
-        public void showAllFeeds(ListView listview, List<ListViewItem> content)
+        public void AddAllFeeds(ListView listview, List<ListViewItem> content)
         {
             foreach(var item in content)
             {

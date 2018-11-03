@@ -28,7 +28,7 @@ namespace Projekt
             var serializer = new Serializer();
             var updatefrequency = new UpdateFrequency();
 
-            serializer.showAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer("Serializer.txt")));
+            serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer("Serializer.txt")));
 
             categories.Categoriess(lvCategories, comboKategori);
 
