@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Categories.cs" />
     <Compile Include="Feeds.cs" />
+    <Compile Include="FileSystem.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

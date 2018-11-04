@@ -29,6 +29,7 @@ namespace Projekt
                 }
             }
         }
+
         public string SerializeListView(string[] myRow)
         {
             //varje item i string[] divide med $

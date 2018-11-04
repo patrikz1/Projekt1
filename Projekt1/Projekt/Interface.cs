@@ -12,5 +12,7 @@ namespace Projekt
         void HideSelection(ListView podcast, ListView categories);
         void FullRowSelect(ListView podcast);
         void SelectedIndex(ComboBox comboFrekvens, ComboBox comboCategory);
+
+        
     }
 }

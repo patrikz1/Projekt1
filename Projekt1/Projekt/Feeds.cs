@@ -27,7 +27,7 @@ namespace Projekt
 
         public async Task BtnNewPod(string url, ComboBox comboFrekvens, ComboBox comboCategory, ListView podcast, ListBox lbAvsnitt, TextBox txtBoxURL)
         {
-
+            
             try
             {
                 var serializer = new Serializer();

@@ -43,7 +43,17 @@ namespace Projekt
 
         private void btnSavePod_Click(object sender, EventArgs e)
         {
+            var serializer = new Serializer();
+            var spellista = new Spellista();
+            if (lvPodcasts.SelectedItems.Count > 0)
+            {
+                lvPodcasts.SelectedItems[0].SubItems[2].Text = comboFrekvens.SelectedItem.ToString();
+                lvPodcasts.SelectedItems[0].SubItems[3].Text = comboKategori.SelectedItem.ToString();
+                spellista.UpdateFeedFileCheckFreqAndGen(lvPodcasts);
+                lvPodcasts.Items.Clear();
+                serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer("Serializer.txt")));
 
+            }
         }
 
         private async void btnNewPod_Click(object sender, EventArgs e)
