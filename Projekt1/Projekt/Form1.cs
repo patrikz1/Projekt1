@@ -14,7 +14,6 @@ namespace Projekt
 {
     public partial class PodcastPlayer : Form
     {
-        List<ListViewItem> lvItemList = new List<ListViewItem>();
         public PodcastPlayer()
         {
             InitializeComponent();
@@ -27,14 +26,16 @@ namespace Projekt
             var categories = new Categories();
             var serializer = new Serializer();
             var updatefrequency = new UpdateFrequency();
+            categories.SerializeCategories();
+            categories.AddCategoriesCombo(comboKategori, categories.ReadAllCategories());
 
-            serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer("Serializer.txt")));
+            serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer(serializer.listFile)));
+            serializer.AddAllFeeds(lvCategories, serializer.DeSerialize(serializer.DeSerializer(serializer.categoryFile)));
 
-            categories.Categoriess(lvCategories, comboKategori);
+
 
             updatefrequency.AddFrequency(comboFrekvens);
             updatefrequency.Updates(updatefrequency.List(lvPodcasts));
-
 
             spellista.FullRowSelect(lvPodcasts);
             spellista.SelectedIndex(comboFrekvens, comboKategori);
@@ -49,7 +50,7 @@ namespace Projekt
             {
                 lvPodcasts.SelectedItems[0].SubItems[2].Text = comboFrekvens.SelectedItem.ToString();
                 lvPodcasts.SelectedItems[0].SubItems[3].Text = comboKategori.SelectedItem.ToString();
-                spellista.UpdateFeedFileCheckFreqAndGen(lvPodcasts);
+                spellista.UpdateFeedFreqAndGen(lvPodcasts);
                 lvPodcasts.Items.Clear();
                 serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer("Serializer.txt")));
 
@@ -65,7 +66,8 @@ namespace Projekt
         private void btnNewCategory_Click(object sender, EventArgs e)
         {
             var categories = new Categories();
-            categories.AddCategories(lvCategories, comboKategori, txtBoxCategories.Text.ToString(),txtBoxCategories);         
+            categories.AddCategories(lvCategories, comboKategori, txtBoxCategories.Text.ToString());
+            txtBoxCategories.Clear();
 
         }
 

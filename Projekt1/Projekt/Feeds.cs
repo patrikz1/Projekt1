@@ -40,10 +40,10 @@ namespace Projekt
                     string[] row = { i.ToString(), syndicationFeed.Title.Text, comboFrekvens.SelectedItem.ToString(),
                       comboCategory.SelectedItem.ToString(), url, DateTime.Now.ToString() };
 
-                    await Task.Delay(50);
 
+                    await Task.Delay(50);
                     AddContent(podcast, AddContent(row));
-                    serializer.EveryRow(serializer.SerializeListView(row));
+                    serializer.EveryRow(serializer.SerializeListView(row), serializer.listFile);
                     CreateXmlReader(url).Close();
                     txtBoxURL.Clear();
                 }

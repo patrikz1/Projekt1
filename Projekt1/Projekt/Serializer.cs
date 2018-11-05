@@ -12,15 +12,16 @@ namespace Projekt
   
        public class Serializer
         {
-
+        public string listFile = "Serializer.txt";
+        public string categoryFile = "Categories.txt";
         public Serializer()
         {
             
         }
-        public void EveryRow(string addedContent)
+        public void EveryRow(string addedContent, string filepath)
         {
             //varje podcast divide med |
-            string filepath = "Serializer.txt";
+           // string filepath = "Serializer.txt";
             using (var stream = new FileStream(filepath, FileMode.Append, FileAccess.Write))
             {
                 using (var writer = new StreamWriter(stream))
@@ -36,7 +37,7 @@ namespace Projekt
             return string.Join("$", myRow);
         }
 
-        public void Serialize(ListView lview)
+        public void Serialize(ListView lview, string filePath)
         {
             int counter = lview.Items.Count;
             ListViewItem[] feeds = new ListViewItem[counter];
@@ -48,7 +49,7 @@ namespace Projekt
                 {
                     lista[i] = item.SubItems[i].Text;
                 }
-                EveryRow(SerializeListView(lista));
+                EveryRow(SerializeListView(lista), filePath);
             }
         }
 

@@ -7,8 +7,13 @@ using System.Windows.Forms;
 
 namespace Projekt
 {
-    class Validation
+    public class Validation
     {
+        public bool IsDuplicate(string newContent, string[] content)
+        {
+            return content.Any((c) => String.Equals(c, newContent, StringComparison.OrdinalIgnoreCase));
+        }
+
         public bool tfInteTomt(TextBox falt)
         {
 
@@ -40,25 +45,7 @@ namespace Projekt
 
                 return true;
             }
-        }
-
-        public bool riktigURL(string url)
-        {
-            try
-            {
-                var xml = "";
-                using (var client = new System.Net.WebClient())
-                {
-                    client.Encoding = Encoding.UTF8;
-                    xml = client.DownloadString(url);
-                    return true;
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Skriv in en giltig URL.");
-                return false;
-            }
+        
         }
     }
 }
