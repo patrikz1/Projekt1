@@ -107,5 +107,23 @@ namespace Projekt
         {
 
         }
+
+        private void btnSaveCategory_Click(object sender, EventArgs e)
+        {
+            var spellista = new Spellista();
+            var serializer = new Serializer();
+            var categories = new Categories();
+            var filesystem = new FileSystem();
+            if (lvCategories.SelectedItems.Count > 0)
+            {
+                categories.btnSaveCategory(lvCategories, txtBoxCategories.Text, lvPodcasts);
+                lvPodcasts.Items.Clear();
+                comboKategori.Items.Clear();
+                serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer(serializer.listFile)));
+                categories.AddCategoriesCombo(comboKategori, categories.ReadAllCategories());
+                spellista.SelectedIndex(comboFrekvens, comboKategori);
+                txtBoxCategories.Clear();
+            }
+        }
     }
 }

@@ -97,6 +97,5 @@ namespace Projekt
         {
             listView.Items.Add(listviewitem);
         }
-
     }
 }

@@ -45,7 +45,6 @@ namespace Projekt
 
                 return true;
             }
-        
         }
     }
 }

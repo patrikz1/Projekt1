@@ -61,6 +61,51 @@ namespace Projekt
             }
         }
 
+        public void btnSaveCategory(ListView lvCategory, string txtBoxCategories, ListView lvPodcast)
+        {
+            var filesystem = new FileSystem();
+            var serializer = new Serializer();
+
+            var currentCategory = lvCategory.SelectedItems[0].SubItems[0].Text;
+            var newCategory = txtBoxCategories;
+            var everyGenre = ReadAllCategories();
+            var path = serializer.categoryFile;
+            var categoryFile = serializer.DeSerialize(serializer.DeSerializer(path));
+            var podcastFile = serializer.DeSerialize(serializer.DeSerializer(serializer.listFile));
+
+            filesystem.ClearFile(serializer.listFile);
+            foreach (ListViewItem item in podcastFile)
+            {
+                var tempArray = new string[item.SubItems.Count];
+                if (item.SubItems[3].Text.Equals(currentCategory))
+                {
+                    item.SubItems[3].Text = newCategory;
+                }
+                for (int i = 0; i < tempArray.Length; i++)
+                {
+                    tempArray[i] = item.SubItems[i].Text;
+                }
+                serializer.EveryRow(serializer.SerializeListView(tempArray), serializer.listFile);
+
+            }
+            filesystem.ClearFile(path);
+            foreach (var item in categoryFile)
+            {
+                var tempArray = new string[item.SubItems.Count];
+                if (item.SubItems[0].Text.Equals(currentCategory))
+                {
+                    item.SubItems[0].Text = newCategory;
+                }
+                for (int i = 0; i < tempArray.Length; i++)
+                {
+                    tempArray[i] = item.SubItems[i].Text;
+                }
+                lvCategory.SelectedItems[0].SubItems[0].Text = txtBoxCategories;
+                serializer.EveryRow(serializer.SerializeListView(tempArray), path);
+
+            }
+
+        }
         public void BtnRemoveCategory(ListView categories, ComboBox comboCategory)
         {
             var serializer = new Serializer();
