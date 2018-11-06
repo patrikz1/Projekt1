@@ -10,7 +10,14 @@ using System.Xml;
 
 namespace Projekt
 {
-    class Feeds
+    class VirtualRandom
+    {
+        public virtual string RandomVirtual() {
+            return "Im a virtual string which is not overridden or used in Feeds";
+        }
+
+    }
+    class Feeds : VirtualRandom
 
     {
         public void Description(string url, SyndicationFeed syndicationFeed, ListView podcast, ListBox lbAvsnitt, TextBox txtBoxDescription)

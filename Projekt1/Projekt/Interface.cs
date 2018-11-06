@@ -13,6 +13,5 @@ namespace Projekt
         void FullRowSelect(ListView podcast);
         void SelectedIndex(ComboBox comboFrekvens, ComboBox comboCategory);
 
-        
     }
 }

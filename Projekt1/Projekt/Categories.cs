@@ -56,7 +56,7 @@ namespace Projekt
                 MessageBox.Show(newCategory + " finns redan i listan");
             }
             else
-            {  
+            {
                 //annars adda newCategory till både listan och comboboxen samt serialisera
                 lvCategories.Items.Add(newCategory);
                 comboCategory.Items.Add(newCategory);
@@ -99,7 +99,7 @@ namespace Projekt
             filesystem.ClearFile(path);
             foreach (var item in categoryFile)
             {
-                var tempArray = new string[item.SubItems.Count];               
+                var tempArray = new string[item.SubItems.Count];
                 if (item.SubItems[0].Text.Equals(currentCategory))
                 {
                     item.SubItems[0].Text = newCategory;
@@ -118,28 +118,29 @@ namespace Projekt
         {
             var serializer = new Serializer();
             var filesystem = new FileSystem();
-                foreach (ListViewItem item in categories.Items)
+            foreach (ListViewItem item in categories.Items)
+            {
+                if (item.Selected)
                 {
-                    if (item.Selected)
+                    string category = item.Text;
+                    //om comboboxen innehåller selected item
+                    if (comboCategory.Items.Contains(category))
                     {
-                        string category = item.Text;
-                        //om comboboxen innehåller selected item
-                        if (comboCategory.Items.Contains(category))
-                        {
-                            //ta bort det från combo
-                            comboCategory.Items.Remove(category);
-                        }
-                        //och från listviewen
-                        categories.Items.Remove(item);
+                        //ta bort det från combo
+                        comboCategory.Items.Remove(category);
+                    }
+                    //och från listviewen
+                    categories.Items.Remove(item);
                     //cleara och serializera nya
                     filesystem.ClearFile(serializer.categoryFile);
-                    serializer.Serialize(categories, serializer.categoryFile);                   
-                    }
+                    serializer.Serialize(categories, serializer.categoryFile);
                 }
-            
+            }
+
         }
         public void SelectedCategory(ListView podcast, ListView lvCategory)
         {
+            var filesystem = new FileSystem();
             var serializer = new Serializer();
             var feeds = new Feeds();
 
@@ -147,17 +148,19 @@ namespace Projekt
             var currentCategory = lvCategory.SelectedItems[0].SubItems[0].Text;
 
             List<ListViewItem> allFeeds = serializer.DeSerialize(serializer.DeSerializer(feedFile));
+            podcast.Items.Clear();
             foreach (ListViewItem item in allFeeds)
             {
                 //om något listviewitem har likadan kategori som är selected
-                    if (item.SubItems[3].Text.Equals(currentCategory))
-                    {
-                //cleara och lägg till listviewitemet med selected kategori
-                         podcast.Items.Clear();
-                         feeds.AddContent(podcast, item);
-                    }
-            }
-        }
-    }
+                if (item.SubItems[3].Text.Equals(currentCategory))
+                {
+                    //cleara och lägg till listviewitemet med selected kategori
+                    feeds.AddContent(podcast, item);
+                }
 
+            }
+
+        }
+
+    }
 }
