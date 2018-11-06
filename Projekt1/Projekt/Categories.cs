@@ -12,7 +12,6 @@ namespace Projekt
     {
         public string[] MyCategories =
         {
-            "All Categories",
             "Comedy",
             "Space",
             "Romance",
@@ -71,9 +70,9 @@ namespace Projekt
             var everyGenre = ReadAllCategories();
             var path = serializer.categoryFile;
             var categoryFile = serializer.DeSerialize(serializer.DeSerializer(path));
-            var podcastFile = serializer.DeSerialize(serializer.DeSerializer(serializer.listFile));
+            var podcastFile = serializer.DeSerialize(serializer.DeSerializer(serializer.FeedFile));
 
-            filesystem.ClearFile(serializer.listFile);
+            filesystem.ClearFile(serializer.FeedFile);
             foreach (ListViewItem item in podcastFile)
             {
                 var tempArray = new string[item.SubItems.Count];
@@ -85,7 +84,7 @@ namespace Projekt
                 {
                     tempArray[i] = item.SubItems[i].Text;
                 }
-                serializer.EveryRow(serializer.SerializeListView(tempArray), serializer.listFile);
+                serializer.EveryRow(serializer.SerializeListView(tempArray), serializer.FeedFile);
 
             }
             filesystem.ClearFile(path);
@@ -121,10 +120,29 @@ namespace Projekt
                         }
                         categories.Items.Remove(item);
                     filesystem.ClearFile(serializer.categoryFile);
-                    serializer.Serialize(categories, serializer.categoryFile);
+                    serializer.Serialize(categories, serializer.categoryFile);                   
                     }
                 }
             
         }
+        public void SelectedCategory(ListView podcast, ListView lvCategory)
+        {
+            var serializer = new Serializer();
+            var feeds = new Feeds();
+
+            string feedFile = "FeedItems.txt";
+            var currentCategory = lvCategory.SelectedItems[0].SubItems[0].Text;
+
+            List<ListViewItem> allFeeds = serializer.DeSerialize(serializer.DeSerializer(feedFile));
+            foreach (ListViewItem item in allFeeds)
+            {
+                    if (item.SubItems[3].Text.Equals(currentCategory))
+                    {
+                         podcast.Items.Clear();
+                         feeds.AddContent(podcast, item);
+                    }
+            }
+        }
     }
+
 }

@@ -196,6 +196,7 @@
             this.lvCategories.TabIndex = 11;
             this.lvCategories.UseCompatibleStateImageBehavior = false;
             this.lvCategories.View = System.Windows.Forms.View.List;
+            this.lvCategories.SelectedIndexChanged += new System.EventHandler(this.lvCategories_SelectedIndexChanged);
             // 
             // txtBoxCategories
             // 

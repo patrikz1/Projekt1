@@ -43,7 +43,7 @@ namespace Projekt
 
                     await Task.Delay(50);
                     AddContent(podcast, AddContent(row));
-                    serializer.EveryRow(serializer.SerializeListView(row), serializer.listFile);
+                    serializer.EveryRow(serializer.SerializeListView(row), serializer.FeedFile);
                     CreateXmlReader(url).Close();
                     txtBoxURL.Clear();
                 }

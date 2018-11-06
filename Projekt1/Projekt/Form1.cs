@@ -19,7 +19,7 @@ namespace Projekt
             InitializeComponent();
         }
 
-      
+
         private void Form1_Load(object sender, EventArgs e)
         {
             var spellista = new Spellista();
@@ -29,7 +29,7 @@ namespace Projekt
             categories.SerializeCategories();
             categories.AddCategoriesCombo(comboKategori, categories.ReadAllCategories());
 
-            serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer(serializer.listFile)));
+            serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer(serializer.FeedFile)));
             serializer.AddAllFeeds(lvCategories, serializer.DeSerialize(serializer.DeSerializer(serializer.categoryFile)));
 
 
@@ -50,9 +50,9 @@ namespace Projekt
             {
                 lvPodcasts.SelectedItems[0].SubItems[2].Text = comboFrekvens.SelectedItem.ToString();
                 lvPodcasts.SelectedItems[0].SubItems[3].Text = comboKategori.SelectedItem.ToString();
-                spellista.UpdateFeedFreqAndGen(lvPodcasts);
+                spellista.UpdateFreqNCat(lvPodcasts);
                 lvPodcasts.Items.Clear();
-                serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer("Serializer.txt")));
+                serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer("FeedItems.txt")));
 
             }
         }
@@ -60,9 +60,9 @@ namespace Projekt
         private async void btnNewPod_Click(object sender, EventArgs e)
         {
             var feeds = new Feeds();
-            await feeds.BtnNewPod(txtBoxURL.Text, comboFrekvens, comboKategori, lvPodcasts,lbAvsnitt,txtBoxURL);                       
+            await feeds.BtnNewPod(txtBoxURL.Text, comboFrekvens, comboKategori, lvPodcasts, lbAvsnitt, txtBoxURL);
         }
-      
+
         private void btnNewCategory_Click(object sender, EventArgs e)
         {
             var categories = new Categories();
@@ -94,13 +94,13 @@ namespace Projekt
         }
 
         private void lbAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
-        {           
-                var feeds = new Feeds();
-                if (lbAvsnitt.SelectedItems.Count > 0)
-                {
-                    feeds.Description(lvPodcasts.SelectedItems[0].SubItems[4].Text, feeds.LoadFeed(feeds.CreateXmlReader(lvPodcasts.SelectedItems[0].SubItems[4].Text)),
-                        lvPodcasts, lbAvsnitt, txtBoxDescription);
-                }
+        {
+            var feeds = new Feeds();
+            if (lbAvsnitt.SelectedItems.Count > 0)
+            {
+                feeds.Description(lvPodcasts.SelectedItems[0].SubItems[4].Text, feeds.LoadFeed(feeds.CreateXmlReader(lvPodcasts.SelectedItems[0].SubItems[4].Text)),
+                    lvPodcasts, lbAvsnitt, txtBoxDescription);
+            }
         }
 
         private void txtBoxDescription_TextChanged(object sender, EventArgs e)
@@ -119,10 +119,19 @@ namespace Projekt
                 categories.btnSaveCategory(lvCategories, txtBoxCategories.Text, lvPodcasts);
                 lvPodcasts.Items.Clear();
                 comboKategori.Items.Clear();
-                serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer(serializer.listFile)));
+                serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer(serializer.FeedFile)));
                 categories.AddCategoriesCombo(comboKategori, categories.ReadAllCategories());
                 spellista.SelectedIndex(comboFrekvens, comboKategori);
                 txtBoxCategories.Clear();
+            }
+        }
+
+        private void lvCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var categories = new Categories();
+            if (lvCategories.SelectedItems.Count > 0)
+            {
+                categories.SelectedCategory(lvPodcasts, lvCategories);
             }
         }
     }

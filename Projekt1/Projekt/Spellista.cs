@@ -24,12 +24,12 @@ namespace Projekt
             categories.HideSelection = false;
         }
 
-        public void UpdateFeedFreqAndGen(ListView lv)
+        public void UpdateFreqNCat(ListView lv)
         {
             var filesystem = new FileSystem();
             var serializer = new Serializer();
 
-            string path = "Serializer.txt";            
+            string path = "FeedItems.txt";            
             List<ListViewItem> allFeeds = serializer.DeSerialize(serializer.DeSerializer(path));
             ListViewItem[] newFeeds = new ListViewItem[lv.Items.Count];
             lv.Items.CopyTo(newFeeds, 0);                        
@@ -80,8 +80,8 @@ namespace Projekt
                 {
 
                     podcasts.Items.Remove(selectedItem);
-                    filesystem.ClearFile(serialize.listFile);
-                    serialize.Serialize(podcasts,serialize.listFile);
+                    filesystem.ClearFile(serialize.FeedFile);
+                    serialize.Serialize(podcasts,serialize.FeedFile);
                     lbAvsnitt.Items.Clear();
                 }
 

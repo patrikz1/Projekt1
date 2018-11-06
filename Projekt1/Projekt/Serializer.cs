@@ -12,7 +12,7 @@ namespace Projekt
   
        public class Serializer
         {
-        public string listFile = "Serializer.txt";
+        public string FeedFile = "FeedItems.txt";
         public string categoryFile = "Categories.txt";
         public Serializer()
         {
@@ -21,7 +21,7 @@ namespace Projekt
         public void EveryRow(string addedContent, string filepath)
         {
             //varje podcast divide med |
-           // string filepath = "Serializer.txt";
+           // string filepath = "FeedItems.txt";
             using (var stream = new FileStream(filepath, FileMode.Append, FileAccess.Write))
             {
                 using (var writer = new StreamWriter(stream))
