@@ -13,7 +13,8 @@ namespace Projekt
     class VirtualRandom
     {
         public virtual string RandomVirtual() {
-            return "Im a virtual string which is not overridden or used in Feeds";
+            return "Im a virtual string which is not overridden or used in Feeds," +
+                "But I can be overriden and used if I want too";
         }
 
     }
@@ -48,10 +49,9 @@ namespace Projekt
                     var syndicationFeed = LoadFeed(CreateXmlReader(url));
                     int i = Count(syndicationFeed);
 
-                    //subitems varje listviewitem har, vissa som url osv är osynliga i listviewen men kan ändå hemtas
+                    //subitems varje listviewitem har, vissa som url osv är osynliga i listviewen men kan ändå hämtas
                     string[] row = { i.ToString(), syndicationFeed.Title.Text, comboFrekvens.SelectedItem.ToString(),
                       comboCategory.SelectedItem.ToString(), url, DateTime.Now.ToString() };
-
 
                     await Task.Delay(50);
                     //adda row samt serializera den
@@ -108,6 +108,7 @@ namespace Projekt
 
         public void AddContent(ListView listView, ListViewItem listviewitem)
         {
+            //overload method
             listView.Items.Add(listviewitem);
         }
     }

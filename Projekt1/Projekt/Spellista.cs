@@ -99,10 +99,6 @@ namespace Projekt
             //så de inte är tomma vid startup
             comboFrekvens.SelectedIndex = 0;
             comboCategory.SelectedIndex = 0;
-        }       
-
-
-        
-      
+        }                   
     }
 }
