@@ -32,8 +32,6 @@ namespace Projekt
             serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer(serializer.FeedFile)));
             serializer.AddAllFeeds(lvCategories, serializer.DeSerialize(serializer.DeSerializer(serializer.categoryFile)));
 
-
-
             updatefrequency.AddFrequency(comboFrekvens);
             updatefrequency.Updates(updatefrequency.List(lvPodcasts));
 

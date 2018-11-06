@@ -45,7 +45,7 @@ namespace Projekt
                     if (allFeedUrl == currentFeedUrl)
 
                     { 
-                        //kolla om frekvens/kategori inte är samma i de 2, isåfall sätt allfeeds till de nya uppdaterade värdet i currentfeed
+                        //kolla om frekvens/kategori inte är samma i de current/allfeedurl , isåfall sätt allfeeds till de nya uppdaterade värdet i currentfeed
                         if (currentFeed.SubItems[2].Text != allFeedItem.SubItems[2].Text || currentFeed.SubItems[3].Text != allFeedItem.SubItems[3].Text)
                         {
                             allFeedItem.SubItems[2].Text = currentFeed.SubItems[2].Text;
