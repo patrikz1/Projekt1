@@ -11,12 +11,13 @@ namespace Projekt
     {
         public bool IsDuplicate(string newContent, string[] content)
         {
+            //används för att kolla om det finns en existerande kategori som har samma namn som en ny man försöker lägga till
             return content.Any((c) => String.Equals(c, newContent, StringComparison.OrdinalIgnoreCase));
         }
 
         public bool tfInteTomt(TextBox falt)
         {
-
+            //kollar så vår url textbox ej är tom
             if (falt.Text == "")
             {
 

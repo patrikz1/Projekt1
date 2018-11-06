@@ -38,9 +38,10 @@ namespace Projekt
         }
         public static bool Frequency(ListViewItem lvitem)
         {
-
+            //switcha beroende vilken frekvens sträng den har
             switch (lvitem.SubItems[2].Text)
             {
+                //kollar om vårt items datetime.now (subitem 5) + adderad tid är större än datetime nu 
                 case "Ten minutes":
                     return DateTime.Parse(lvitem.SubItems[5].Text).AddMinutes(10) > DateTime.Now;
                 case "One Hour":

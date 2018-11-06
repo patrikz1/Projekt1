@@ -50,7 +50,7 @@ namespace Projekt
             {
                 lvPodcasts.SelectedItems[0].SubItems[2].Text = comboFrekvens.SelectedItem.ToString();
                 lvPodcasts.SelectedItems[0].SubItems[3].Text = comboKategori.SelectedItem.ToString();
-                spellista.UpdateFreqNCat(lvPodcasts);
+                spellista.UpdateFeedFreqAndGen(lvPodcasts);
                 lvPodcasts.Items.Clear();
                 serializer.AddAllFeeds(lvPodcasts, serializer.DeSerialize(serializer.DeSerializer("FeedItems.txt")));
 
@@ -84,7 +84,10 @@ namespace Projekt
         private void btnRemovePod_Click(object sender, EventArgs e)
         {
             var spellista = new Spellista();
-            spellista.BtnRemovePod(lvPodcasts, lbAvsnitt);
+            if (lvPodcasts.SelectedItems.Count > 0)
+            {
+                spellista.BtnRemovePod(lvPodcasts, lbAvsnitt);
+            }
         }
 
         private void btnRemoveCategory_Click(object sender, EventArgs e)

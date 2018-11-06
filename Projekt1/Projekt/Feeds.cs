@@ -15,13 +15,16 @@ namespace Projekt
     {
         public void Description(string url, SyndicationFeed syndicationFeed, ListView podcast, ListBox lbAvsnitt, TextBox txtBoxDescription)
         {
+            //ta url från selecteditem, loada urlen i ett xmldocument
             url = podcast.SelectedItems[0].SubItems[4].Text;
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.Load(url);
+            //gå ner till description taggen
             XmlNodeList description = xmlDocument.SelectNodes("//rss/channel/item/description");
 
             var i = lbAvsnitt.SelectedIndex;
             txtBoxDescription.Clear();
+            //skriv ut description taggen baserat på selectedindex i avsnitt, regex pga <p> kom med först
             txtBoxDescription.Text = (Regex.Replace(description[i].InnerText, @"<.*?>", ""));
         }
 
@@ -37,11 +40,14 @@ namespace Projekt
                     lbAvsnitt.Items.Clear();
                     var syndicationFeed = LoadFeed(CreateXmlReader(url));
                     int i = Count(syndicationFeed);
+
+                    //subitems varje listviewitem har, vissa som url osv är osynliga i listviewen men kan ändå hemtas
                     string[] row = { i.ToString(), syndicationFeed.Title.Text, comboFrekvens.SelectedItem.ToString(),
                       comboCategory.SelectedItem.ToString(), url, DateTime.Now.ToString() };
 
 
                     await Task.Delay(50);
+                    //adda row samt serializera den
                     AddContent(podcast, AddContent(row));
                     serializer.EveryRow(serializer.SerializeListView(row), serializer.FeedFile);
                     CreateXmlReader(url).Close();

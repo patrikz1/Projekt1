@@ -21,7 +21,6 @@ namespace Projekt
         public void EveryRow(string addedContent, string filepath)
         {
             //varje podcast divide med |
-           // string filepath = "FeedItems.txt";
             using (var stream = new FileStream(filepath, FileMode.Append, FileAccess.Write))
             {
                 using (var writer = new StreamWriter(stream))
@@ -33,7 +32,7 @@ namespace Projekt
 
         public string SerializeListView(string[] myRow)
         {
-            //varje item i string[] divide med $
+            //varje subitem i string[] divide med $
             return string.Join("$", myRow);
         }
 
